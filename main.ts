@@ -17,7 +17,9 @@ if (!/^[^\s]{1,30}$/.test(WORD)) {
   throw new Error(`WORD must be a single word of 1-30 characters, got ${JSON.stringify(WORD)}`);
 }
 
-const outputDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+const rawOutputDir = process.env.MAKEFUN_OUTPUT_DIR;
+const outputDir =
+  rawOutputDir && rawOutputDir.trim() ? rawOutputDir.trim() : "/output";
 const outputPath = join(outputDir, "entry.txt");
 
 mkdirSync(outputDir, { recursive: true });
